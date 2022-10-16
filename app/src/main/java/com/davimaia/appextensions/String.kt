@@ -52,3 +52,18 @@ fun toMaskCpf(cpf: String): String {
     val cpfEditable = cpf.substring(2, 11)
     return cpf.replace(cpfEditable, CPF_MASK)
 }
+
+
+/*
+ This function calculate age by date 
+*/
+fun String.calculateAgeByDate(): Int {
+    val year = this.substring(0, 4).toInt()
+    val month = this.substring(5, 7).toInt()
+    val dayOfMonth = this.substring(8, 10).toInt()
+
+    return Period.between(
+        LocalDate.of(year, month, dayOfMonth),
+        LocalDate.now()
+    ).years
+}
